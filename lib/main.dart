@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,8 +42,48 @@ class BasicPage extends StatelessWidget {
     );
   }
 
+  Widget aboutRow(IconData icon, String text) {
+    return Row(
+      children: [
+        Icon(icon),
+        Padding(
+          padding: EdgeInsets.all(5),
+          child: Text(text),
+        ),
+      ],
+    );
+  }
+
+  Column friendImage(String name, String imagePath, double width) {
+    return Column(
+      children: [
+        Container(
+          margin: EdgeInsets.all(5),
+          width: width / 3 - 15,
+          height: width / 3 - 15,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(imagePath),
+              fit: BoxFit.cover,
+            ),
+            boxShadow: [BoxShadow(color: Colors.black)],
+            borderRadius: BorderRadius.circular(20)
+          ),
+        ),
+        Text(name)
+      ],
+    );
+  }
+
+  Divider sectionDivider() {
+    return Divider(
+      thickness: 2,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -80,10 +121,21 @@ class BasicPage extends StatelessWidget {
               "N'amasse pas mousse",
               style: TextStyle(fontStyle: FontStyle.italic, color: Colors.grey),
             ),
-            Divider(
-              thickness: 2,
-            ),
+            sectionDivider(),
             sectionTitleText("À propos de moi"),
+            aboutRow(Icons.home, "Gap, France"),
+            aboutRow(Icons.work, "Développe"),
+            aboutRow(Icons.favorite, "En couple avec mon chat"),
+            sectionDivider(),
+            sectionTitleText("Amis"),
+            Row(
+              children: [
+                friendImage("Pierre", "images/cat.jpg", width),
+                friendImage("Paul", "images/sunflower.jpg", width),
+                friendImage("Jacques", "images/duck.jpg", width),
+              ],
+            ),
+            sectionDivider(),
           ],
         ),
       ),
