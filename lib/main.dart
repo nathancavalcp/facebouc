@@ -24,6 +24,23 @@ class BasicPage extends StatelessWidget {
       ); 
 
   }
+
+  Widget sectionTitleText(String text) {
+    return Padding(
+      padding: const EdgeInsets.all(5),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Text(
+          text,
+          style: const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 18,
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,6 +72,18 @@ class BasicPage extends StatelessWidget {
                 ),
               ],
             ),
+            Text(
+              "Pierre Quiroule",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+            ),
+            Text(
+              "N'amasse pas mousse",
+              style: TextStyle(fontStyle: FontStyle.italic, color: Colors.grey),
+            ),
+            Divider(
+              thickness: 2,
+            ),
+            sectionTitleText("À propos de moi"),
           ],
         ),
       ),
